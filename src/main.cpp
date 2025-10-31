@@ -14,5 +14,12 @@ int main() {
         std::cout << "index " << i << " = " << custom_vector.index(i) << std::endl;
     }
 
+    custom_vector.pop_back();
+    std::cout << "pop vector" << std::endl;
+
+    for (size_t i = 0; i < custom_vector.size(); i++) {
+        std::cout << "index " << i << " = " << custom_vector.index(i) << std::endl;
+    }
+
     return 0;
 }

@@ -18,6 +18,8 @@ template <typename T> class my_vector {
     T &front() const;
     T &back() const;
 
+    void pop_back();
+
   private:
     std::allocator<int> block;
     int *head;
@@ -52,3 +54,8 @@ template <typename T> T &my_vector<T>::index(int idx) const { return *(this->hea
 template <typename T> T &my_vector<T>::back() const { return *(this->head + this->length - 1); }
 
 template <typename T> T &my_vector<T>::front() const { return *(this->head); }
+
+template <typename T> void my_vector<T>::pop_back() {
+    this->block.destroy(this->head + this->length - 1);
+    this->length = this->length - 1;
+}
