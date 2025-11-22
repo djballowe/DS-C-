@@ -1,7 +1,6 @@
 #pragma once
 #include <cstring>
 #include <initializer_list>
-#include <iostream>
 #include <memory>
 
 template <typename T> class my_vector {
@@ -22,6 +21,8 @@ template <typename T> class my_vector {
     void pop_back();
     void push_back(const T &val);
     // add r value push back
+
+    void clear();
 
   private:
     std::allocator<T> block;
@@ -63,7 +64,7 @@ template <typename T> T &my_vector<T>::front() const { return *(this->head); }
 
 template <typename T> void my_vector<T>::pop_back() {
     this->block.destroy(this->head + this->v_length - 1);
-    this->v_length--; 
+    this->v_length--;
 }
 
 template <typename T> void my_vector<T>::push_back(const T &val) {
@@ -73,6 +74,11 @@ template <typename T> void my_vector<T>::push_back(const T &val) {
         this->add_element_resize(val);
     }
     return;
+}
+
+template <typename T> void my_vector<T>::clear() {
+    std::destroy(this->head, this->head + this->v_length);
+    this->v_length = 0;
 }
 
 // private helpers
